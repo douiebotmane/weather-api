@@ -1,4 +1,4 @@
 FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
-COPY target/weather-0.0.1-SNAPSHOT.jar weather-app.jar
-ENTRYPOINT ["java", "-jar", "weather-app.jar"]
+ADD target/weather-api-images.jar weather-api-images.jar
+ENTRYPOINT ["java", "-jar", "weather-api-images.jar"]

@@ -100,7 +100,6 @@
 						<path>
 							<groupId>org.mapstruct</groupId>
 							<artifactId>mapstruct-processor</artifactId>
-							<scope>provided</scope>
 							<version>1.6.3</version>
 						</path>
 					</annotationProcessorPaths>
@@ -119,6 +118,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>weather-api-images</finalName>
 	</build>
 
 </project>
