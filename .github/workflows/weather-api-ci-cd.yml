@@ -54,7 +54,7 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy to VPS via SSH
+      - name: Deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -65,3 +65,15 @@ jobs:
             docker stop weather-api || true
             docker rm weather-api || true
             docker run -d --name weather-api -p 8080:8080 otmanedouieb01/weather-api-images:latest
+
+      - name: Deploy to AWS - EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
+          script: |
+            docker pull otmanedouieb01/weather-api-images:latest
+            docker stop weather-api || true
+            docker rm weather-api || true
+            docker run -d --name weather-api -p 80:8080 otmanedouieb01/weather-api-images:latest
