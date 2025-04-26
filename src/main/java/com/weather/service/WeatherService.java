@@ -8,7 +8,6 @@ import com.weather.model.*;
 import com.weather.remote.WeatherBitApi;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -25,7 +24,6 @@ public class WeatherService {
     private final WeatherBitApi weatherBitApi;
     private final WeatherMapper mapper;
 
-    @Cacheable("currentWeather")
     public CurrentWeatherDto getCurrentWeather(String city) {
         try {
             WeatherBitCurrentResponse response = weatherBitApi.getCurrentWeather(city);
@@ -40,7 +38,6 @@ public class WeatherService {
         }
     }
 
-    @Cacheable("forecastSummary")
     public ForecastSummaryDto getForecastSummary(String city) {
         try {
             WeatherBitForecastResponse response = weatherBitApi.getForecastWeather(city, 7);
